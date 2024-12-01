@@ -3,7 +3,7 @@ package co.typecheck.adventofcode2024
 import kotlin.math.abs
 
 fun day01Part1(input: String): Int {
-    var left = mutableListOf<Int>()
+    val left = mutableListOf<Int>()
     val right = mutableListOf<Int>()
     input.lines().forEach {
         val (a, b) = it.split("   ").map(String::toInt)
@@ -16,7 +16,7 @@ fun day01Part1(input: String): Int {
 }
 
 fun day01Part2(input: String): Int {
-    var left = mutableListOf<Int>()
+    val left = mutableListOf<Int>()
     val right = mutableMapOf<Int, Int>()
     input.lines().forEach {
         val (a, b) = it.split("   ").map(String::toInt)
