@@ -1,6 +1,6 @@
 package co.typecheck.adventofcode2024
 
-data class UserMap(
+private data class UserMap(
     val width: Int,
     val height: Int,
     val data: List<Char>,
@@ -25,7 +25,7 @@ private fun parse(input: String): UserMap {
     return UserMap(width, height, data, startPosition)
 }
 
-fun findPath(userMap: UserMap): Set<Pair<Int, Int>>? {
+private fun findPath(userMap: UserMap): Set<Pair<Int, Int>>? {
     var direction = 0 to -1
     val visited = mutableSetOf(userMap.startPosition)
     val visitedWithDirection = mutableSetOf(userMap.startPosition to direction)
