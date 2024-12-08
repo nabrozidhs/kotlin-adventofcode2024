@@ -1,34 +1,27 @@
 package co.typecheck.adventofcode2024
 
 private data class Input(
-    val data: List<Char>,
     val width: Int,
     val height: Int,
     val frequencies: Map<Char, List<Pair<Int, Int>>>,
 ) {
 
-    fun getXY(x: Int, y: Int): Char? =
-        if (x in 0 until width && y in 0 until height) {
-            data[x + y * width]
-        } else {
-            null
-        }
+    fun inBounds(x: Int, y: Int): Boolean =
+        x in 0 until width && y in 0 until height
 }
 
 private fun parse(input: String): Input {
     val lines = input.lines()
-    var data = mutableListOf<Char>()
     var frequencies = mutableMapOf<Char, MutableList<Pair<Int, Int>>>()
     lines.forEachIndexed { y, line ->
         line.forEachIndexed { x, c ->
-            data += c
             if (c != '.') {
                 frequencies[c] = (frequencies[c] ?: mutableListOf()).also { it.add(x to y) }
             }
         }
     }
 
-    return Input(data = data, height = lines.size, width = lines[0].length, frequencies = frequencies)
+    return Input(height = lines.size, width = lines[0].length, frequencies = frequencies)
 }
 
 private fun day08(input: String, repeats: Boolean): Int {
@@ -56,7 +49,7 @@ private fun day08(input: String, repeats: Boolean): Int {
                             (node2.first + sign * i * diff.first) to (node2.second + sign * i * diff.second)
                         }
 
-                        if (data.getXY(newAntinode.first, newAntinode.second) == null) {
+                        if (!data.inBounds(newAntinode.first, newAntinode.second)) {
                             break
                         }
 
